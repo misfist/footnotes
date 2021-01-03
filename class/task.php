@@ -814,6 +814,18 @@ class MCI_Footnotes_Task {
             }
         }
 
+        /**
+         * Only add tooltip markup if tooltips are enabled
+         * 
+         * @author Patrizia Lutz @misfist
+         * 
+         * @since 2.4.0d0
+         */
+        $l_bool_TooltipsEnabled = MCI_Footnotes_Convert::toBool( MCI_Footnotes_Settings::instance()->get( MCI_Footnotes_Settings::C_BOOL_FOOTNOTES_MOUSE_OVER_BOX_ENABLED ) );
+        if( $l_bool_TooltipsEnabled ) {
+            $l_obj_TemplateTooltip = new MCI_Footnotes_Template( MCI_Footnotes_Template::C_STR_PUBLIC, "tooltip" );
+        }
+
         // load referrer templates if footnotes text not hidden:
         if (!$p_bool_HideFootnotesText) {
             // load two template files:
@@ -822,7 +834,7 @@ class MCI_Footnotes_Task {
             } else {
                 $l_obj_Template = new MCI_Footnotes_Template(MCI_Footnotes_Template::C_STR_PUBLIC, "footnote");
             }
-            $l_obj_TemplateTooltip = new MCI_Footnotes_Template(MCI_Footnotes_Template::C_STR_PUBLIC, "tooltip");
+            // $l_obj_TemplateTooltip = new MCI_Footnotes_Template(MCI_Footnotes_Template::C_STR_PUBLIC, "tooltip");
         } else {
             $l_obj_Template = null;
             $l_obj_TemplateTooltip = null;
